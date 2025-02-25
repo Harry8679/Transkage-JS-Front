@@ -12,7 +12,8 @@ services:
     ports:
       - "5050:5050"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/mydb
+      - MONGO_URI=${MONGO_URI}  # Charge l'URL MongoDB depuis le fichier .env
+      - PORT=${PORT}             # Charge le port depuis .env
     depends_on:
       - mongo
 
