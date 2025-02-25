@@ -1,0 +1,46 @@
+name: Run Tests before Push
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo
+        ports:
+          - 27017:27017
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install dependencies (Client)
+      run: |
+        cd client
+        npm install
+
+    - name: Run tests (Client)
+      run: |
+        cd client
+        npm test -- --watchAll=false
+
+    - name: Install dependencies (Server)
+      run: |
+        cd server
+        npm install
+
+    - name: Run tests (Server)
+      run: |
+        cd server
+        npm test
