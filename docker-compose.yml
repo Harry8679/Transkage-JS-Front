@@ -14,6 +14,9 @@ services:
     environment:
       - MONGO_URI=${MONGO_URI}  # Charge l'URL MongoDB depuis le fichier .env
       - PORT=${PORT}             # Charge le port depuis .env
+    volumes:
+      - ./server:/app  # Monte le dossier local dans le conteneur pour le Hot Reload
+      - /app/node_modules  # Ignore les node_modules pour éviter les conflits
     depends_on:
       - mongo
 
