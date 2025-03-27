@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
-const User = require('../../models/user.model');
+const User = require('../../models/user.model'); // adapte le chemin si besoin
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const bcrypt = require('bcryptjs');
 
 let mongoServer;
 
-jest.setTimeout(20000); // 20 secondes pour éviter les timeouts
+jest.setTimeout(20000); // timeout augmenté pour les tests asynchrones
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const mongoUri = mongoServer.getUri();
-  await mongoose.connect(mongoUri, {});
+  await mongoose.connect(mongoUri);
 });
 
 afterAll(async () => {
   await mongoose.disconnect();
-  if (mongoServer) {
-    await mongoServer.stop();
-  }
+  if (mongoServer) await mongoServer.stop();
 });
 
 describe('User Model Tests', () => {
@@ -27,7 +25,7 @@ describe('User Model Tests', () => {
       lastName: "Doe",
       email: "johndoe@example.com",
       password: "password123",
-      roles: ["sender"]
+      role: "user"
     };
 
     const user = new User(userData);
@@ -43,7 +41,7 @@ describe('User Model Tests', () => {
       firstName: "Jane",
       lastName: "Doe",
       password: "password123",
-      roles: ["transporter"]
+      role: "user"
     };
 
     try {
@@ -60,12 +58,13 @@ describe('User Model Tests', () => {
       lastName: "Smith",
       email: "alice@example.com",
       password: "securepassword",
-      roles: ["sender", "transporter"]
+      role: "admin"
     });
 
     await user.save();
-    const isMatch = await user.comparePassword("securepassword");
-    expect(isMatch).toBe(true);
+
+    const isCorrect = await user.comparePassword("securepassword");
+    expect(isCorrect).toBe(true);
 
     const isWrong = await user.comparePassword("wrongpassword");
     expect(isWrong).toBe(false);
@@ -77,15 +76,15 @@ describe('User Model Tests', () => {
       lastName: "Marley",
       email: "bob@example.com",
       password: "password123",
-      roles: ["sender"]
+      role: "user"
     });
 
     const user2 = new User({
       firstName: "Robert",
       lastName: "Marley",
-      email: "bob@example.com",
+      email: "bob@example.com", // même email
       password: "password456",
-      roles: ["sender"]
+      role: "user"
     });
 
     await user1.save();
@@ -94,7 +93,7 @@ describe('User Model Tests', () => {
       await user2.save();
     } catch (err) {
       expect(err).toBeDefined();
-      expect(err.code).toBe(11000); // violation de contrainte unique
+      expect(err.code).toBe(11000); // duplication clé unique
     }
   });
 
@@ -104,14 +103,14 @@ describe('User Model Tests', () => {
       lastName: "Role",
       email: "invalid@example.com",
       password: "password123",
-      roles: ["hacker"] // rôle invalide
+      role: "superadmin" // rôle invalide
     };
 
     try {
       await new User(userData).save();
     } catch (err) {
       expect(err).toBeDefined();
-      expect(err.errors["roles"]).toBeDefined();
+      expect(err.errors.role).toBeDefined();
     }
   });
 });
