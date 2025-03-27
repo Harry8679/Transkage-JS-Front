@@ -25,6 +25,7 @@ describe('Order Model', () => {
   let trip;
 
   beforeEach(async () => {
+    await mongoose.connection.db.dropDatabase();
     // Créer deux utilisateurs factices
     userSender = await User.create({
       firstName: 'Sender',
