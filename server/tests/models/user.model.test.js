@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
-const User = require('../models/user.model'); // Importer le modèle
+// const User = require('../models/user.model'); // Importer le modèle
+const User = require('../../models/user.model');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const bcrypt = require('bcryptjs');
 
 let mongoServer;
+
+jest.setTimeout(20000); // 20 secondes, à ajuster si besoin
 
 beforeAll(async () => {
     mongoServer = await MongoMemoryServer.create();
@@ -13,7 +16,9 @@ beforeAll(async () => {
 
 afterAll(async () => {
     await mongoose.disconnect();
-    await mongoServer.stop();
+    if (mongoServer) {
+        await mongoServer.stop();
+    }
 });
 
 describe('User Model Tests', () => {

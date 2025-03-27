@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-  "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest --detectOpenHandles --forceExit",
+    "test-coverage": "npm test -- --coverage"
   },
   "jest": {
     "testEnvironment": "node"
