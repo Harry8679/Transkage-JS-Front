@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
 const User = require('../../models/user.model'); // adapte le chemin
-const { protect, adminMiddleware } = require('../../middleware/auth.middleware'); // adapte le chemin
+// const { protect, adminMiddleware } = require('../../middleware/auth.middleware'); // adapte le chemin
+const { protect, adminMiddleware } = require('../../middlewares/auth.middleware');
 
 let mongoServer;
 let app;
