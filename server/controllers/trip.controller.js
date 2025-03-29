@@ -160,10 +160,4 @@ const getUserTrips = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = {
-  createTrip,
-  getTrips,
-  updateTrip,
-  getTripById,
-  getUserTrips,
-};
+module.exports = { createTrip, getTrips, updateTrip, getTripById, getUserTrips };
