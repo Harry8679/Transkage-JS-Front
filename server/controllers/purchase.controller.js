@@ -21,13 +21,7 @@ const purchaseKilos = asyncHandler(async (req, res) => {
   const totalPrice = trip.pricePerKilo * 1.15 * kilos; // marge de 15%
   const purchaseCode = uuidv4();
 
-  const purchase = new Purchase({
-    user: req.user._id,
-    trip: trip._id,
-    kilosBought: kilos,
-    totalPrice,
-    purchaseCode,
-  });
+  const purchase = new Purchase({ user: req.user._id, trip: trip._id, kilosBought: kilos, totalPrice, purchaseCode });
 
   await purchase.save();
 
@@ -62,7 +56,4 @@ const verifyPurchaseCode = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'Code vérifié, le transporteur sera payé.' });
 });
 
-module.exports = {
-  purchaseKilos,
-  verifyPurchaseCode,
-};
+module.exports = { purchaseKilos, verifyPurchaseCode };
