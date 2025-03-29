@@ -76,7 +76,4 @@ const createCheckout = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = {
-  createStripePayment,
-  createCheckout,
-};
+module.exports = { createStripePayment, createCheckout };
