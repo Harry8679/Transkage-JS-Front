@@ -17,6 +17,7 @@ let fakeToken;
 jest.setTimeout(20000);
 
 beforeAll(async () => {
+  process.env.JWT_SECRET = 'ParmiLesEnfantsDesHommesIlEnEstUnSeulSeigneurQuiSurLaTerreOuNousSommesTaServiDeToutSonCoeur';
   mongoServer = await MongoMemoryServer.create();
   await mongoose.connect(mongoServer.getUri());
 
