@@ -3,31 +3,11 @@ const Path = require('../models/path.model');
 // Créer un trajet
 const createPath = async (req, res) => {
   try {
-    const {
-      departureCountry,
-      arrivalCountry,
-      selectedTransport,
-      departureCity,
-      arrivalCity,
-      departureDate,
-      departureTime,
-      arrivalDate,
-      arrivalTime,
-      kilos,
-    } = req.body;
+    const { departureCountry, arrivalCountry, selectedTransport, departureCity, arrivalCity, departureDate,
+      departureTime, arrivalDate, arrivalTime, kilos } = req.body;
 
-    const newPath = new Path({
-      departureCountry,
-      arrivalCountry,
-      selectedTransport,
-      departureCity,
-      arrivalCity,
-      departureDate,
-      departureTime,
-      arrivalDate,
-      arrivalTime,
-      kilos,
-    });
+    const newPath = new Path({ departureCountry, arrivalCountry, selectedTransport, departureCity,
+      arrivalCity, departureDate, departureTime, arrivalDate, arrivalTime, kilos });
 
     const savedPath = await newPath.save();
     res.status(201).json(savedPath);
@@ -48,7 +28,4 @@ const getAllPaths = async (req, res) => {
   }
 };
 
-module.exports = {
-  createPath,
-  getAllPaths,
-};
+module.exports = { createPath, getAllPaths };
