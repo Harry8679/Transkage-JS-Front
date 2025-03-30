@@ -26,18 +26,8 @@ const sendMail = async (subject, send_to, sent_from, reply_to, template, firstNa
 
   transporter.use('compile', hbs(handlebarOptions));
 
-  const options = {
-    from: sent_from,
-    to: send_to,
-    replyTo: reply_to,
-    subject,
-    template,
-    context: {
-      firstName,
-      lastName,
-      link,
-    },
-  };
+  const options = {from: sent_from, to: send_to, replyTo: reply_to, subject,
+    template, context: { firstName, lastName, link }};
 
   try {
     const info = await transporter.sendMail(options);
