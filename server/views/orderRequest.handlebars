@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle commande</title>
+</head>
+<body>
+    <h1>Bonjour {{ transporterName }},</h1>
+    <p>Vous avez reçu une nouvelle demande de transport pour un colis de {{ kilos }} kg.</p>
+    <p><strong>Description du produit :</strong> {{ productDescription }}</p>
+    <p><strong>Dimensions du produit :</strong> {{ productDimensions }}</p>
+    <p><strong>Code secret :</strong> {{ secretCode }}</p>
+
+    <p>Veuillez choisir une action ci-dessous :</p>
+    <a href="{{ acceptLink }}" style="padding: 10px 20px; background-color: green; color: white; text-decoration: none;">Accepter la commande</a>
+    <a href="{{ rejectLink }}" style="padding: 10px 20px; background-color: red; color: white; text-decoration: none; margin-left: 10px;">Refuser la commande</a>
+
+    <p>Merci de votre réponse rapide.</p>
+</body>
+</html>
