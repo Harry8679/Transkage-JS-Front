@@ -1,15 +1,6 @@
 const express = require('express');
-const {
-  acceptOrder,
-  acceptOrderByTransporter,
-  createOrder,
-  getAllOrders,
-  getOrderById,
-  getUserOrders,
-  markOrderAsPaid,
-  rejectOrder,
-  rejectOrderByTransporter
-} = require('../controllers/order.controller');
+const { acceptOrder, acceptOrderByTransporter, createOrder, getAllOrders, getOrderById, getUserOrders, 
+  markOrderAsPaid, rejectOrder, rejectOrderByTransporter } = require('../controllers/order.controller');
 
 const { protect } = require('../middlewares/auth.middleware');
 
