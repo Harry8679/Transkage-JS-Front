@@ -2,19 +2,21 @@ const request = require('supertest');
 const app = require('../../app');
 const nodemailer = require('nodemailer');
 
-// Mock de nodemailer
 jest.mock('nodemailer');
 
 describe('📧 Contact Mail Controller', () => {
   let sendMailMock;
+  const originalConsoleError = console.error; // 🔁 Sauvegarde de l'original
 
   beforeEach(() => {
     sendMailMock = jest.fn().mockResolvedValue('Email envoyé avec succès');
     nodemailer.createTransport.mockReturnValue({ sendMail: sendMailMock });
+    console.error = jest.fn(); // 🔇 Supprime les logs d'erreur pendant les tests
   });
 
   afterEach(() => {
     jest.clearAllMocks();
+    console.error = originalConsoleError; // ✅ Restaure console.error proprement
   });
 
   it('✅ Devrait envoyer un email avec succès', async () => {
@@ -51,10 +53,6 @@ describe('📧 Contact Mail Controller', () => {
   });
 
   it('🚨 Devrait renvoyer une erreur serveur si l’envoi échoue', async () => {
-    // ⛔ Empêche les logs rouges dans le terminal Jest
-    const originalConsoleError = console.error;
-    console.error = jest.fn();
-
     sendMailMock.mockRejectedValueOnce(new Error('Échec envoi'));
 
     const res = await request(app).post('/api/v1/contact').send({
@@ -67,8 +65,5 @@ describe('📧 Contact Mail Controller', () => {
     expect(res.status).toBe(500);
     expect(res.body.message).toMatch(/erreur/i);
     expect(sendMailMock).toHaveBeenCalledTimes(1);
-
-    // 🔁 Restauration du vrai console.error
-    console.error = originalConsoleError;
   });
 });
