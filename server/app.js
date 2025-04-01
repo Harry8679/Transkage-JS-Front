@@ -3,12 +3,6 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const userRoutes = require('./routes/user.route');
-/*
-import userRoutes from './routes/user.route';
-import contactRoutes from './routes/contact.route';
-import orderRoutes from './routes/order.route';
-import tripRoutes from './routes/trip.route'; // Importer le fichier des routes
-import stripePaymentRoutes from './routes/stripePayment.route';*/
 const contactRoutes = require('./routes/contact.route');
 const orderRoutes = require('./routes/order.route');
 const tripRoutes = require('./routes/trip.route');
