@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Order = require('../models/order.models');
+const Order = require('../models/order.model');
 const Trip = require('../models/trip.model');
 const sendMailOrder = require('../utils/sendEmailOrder');
 

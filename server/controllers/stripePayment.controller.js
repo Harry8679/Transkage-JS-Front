@@ -1,5 +1,5 @@
 const Stripe = require('stripe');
-const Order = require('../models/order.models');
+const Order = require('../models/order.model');
 const asyncHandler = require('express-async-handler');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
