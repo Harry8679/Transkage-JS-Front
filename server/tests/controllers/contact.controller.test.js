@@ -1,11 +1,8 @@
-// tests/controllers/contact.controller.test.js
-
 const request = require('supertest');
-const app = require('../../app'); // ✅ Assure-toi que ce chemin est correct
+const app = require('../../app');
 const nodemailer = require('nodemailer');
 
-// 🔁 Si tu utilises nodemailer-sendgrid dans ton contrôleur,
-// il faut mocker createTransport + sendMail.
+// Mock de nodemailer
 jest.mock('nodemailer');
 
 describe('📧 Contact Mail Controller', () => {
@@ -53,7 +50,11 @@ describe('📧 Contact Mail Controller', () => {
     expect(sendMailMock).not.toHaveBeenCalled();
   });
 
-  it('❌ Devrait renvoyer une erreur serveur si l’envoi échoue', async () => {
+  it('🚨 Devrait renvoyer une erreur serveur si l’envoi échoue', async () => {
+    // ⛔ Empêche les logs rouges dans le terminal Jest
+    const originalConsoleError = console.error;
+    console.error = jest.fn();
+
     sendMailMock.mockRejectedValueOnce(new Error('Échec envoi'));
 
     const res = await request(app).post('/api/v1/contact').send({
@@ -66,5 +67,8 @@ describe('📧 Contact Mail Controller', () => {
     expect(res.status).toBe(500);
     expect(res.body.message).toMatch(/erreur/i);
     expect(sendMailMock).toHaveBeenCalledTimes(1);
+
+    // 🔁 Restauration du vrai console.error
+    console.error = originalConsoleError;
   });
 });
