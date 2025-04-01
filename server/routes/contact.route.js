@@ -1,5 +1,5 @@
-import express from 'express';
-import { sendContactMail } from '../controllers/contact.controller';
+const express = requi('express');
+const { sendContactMail } = requi('../controllers/contact.controller');
 
 const router = express.Router();
 
