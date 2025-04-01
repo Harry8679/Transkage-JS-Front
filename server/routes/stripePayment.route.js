@@ -1,10 +1,9 @@
-import { Router } from 'express';
-import { createCheckout, createStripePayment } from '../controllers/stripePayment.controller'; // Assurez-vous que le chemin est correct
+const express = require('express');
+const { createCheckout, createStripePayment } = require('../controllers/stripePayment.controller');
 
-const router = Router();
+const router = express.Router();
 
-// Route pour créer un PaymentIntent Stripe
 router.post('/create-payment-intent', createStripePayment);
 router.post('/create-checkout-session', createCheckout);
 
-export default router;
+module.exports = router;
