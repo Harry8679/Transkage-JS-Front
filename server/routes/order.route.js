@@ -1,9 +1,19 @@
-import { Router } from 'express';
-import { acceptOrder, acceptOrderByTransporter, createOrder, getAllOrders, getOrderById,
-  getUserOrders, markOrderAsPaid, rejectOrder, rejectOrderByTransporter } from '../controllers/order.controller';
-import { protect } from '../middlewares/auth.middleware';
+const express = require('express');
+const {
+  acceptOrder,
+  acceptOrderByTransporter,
+  createOrder,
+  getAllOrders,
+  getOrderById,
+  getUserOrders,
+  markOrderAsPaid,
+  rejectOrder,
+  rejectOrderByTransporter
+} = require('../controllers/order.controller');
 
-const router = Router();
+const { protect } = require('../middlewares/auth.middleware');
+
+const router = express.Router();
 
 // Créer une commande
 router.post('/', protect, createOrder);
@@ -32,4 +42,4 @@ router.put('/:orderId/mark-as-paid', protect, markOrderAsPaid);
 // Récupérer une commande par ID
 router.get('/:orderId', protect, getOrderById);
 
-export default router;
+module.exports = router;
