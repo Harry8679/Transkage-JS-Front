@@ -1,13 +1,6 @@
 const express = require('express');
-const {
-  registerUser,
-  loginUser,
-  verifyUser,
-  logoutUser,
-  changePassword,
-  getUserProfile,
-  updateUserProfile
-} = require('../controllers/user.controller');
+const { registerUser, loginUser, verifyUser, logoutUser, 
+  changePassword, getUserProfile, updateUserProfile } = require('../controllers/user.controller');
 
 const { protect } = require('../middlewares/auth.middleware');
 
