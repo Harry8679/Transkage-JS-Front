@@ -1,11 +1,5 @@
 const express = require('express');
-const {
-  createTrip,
-  getTripById,
-  getTrips,
-  getUserTrips,
-  updateTrip
-} = require('../controllers/trip.controller');
+const { createTrip, getTripById, getTrips, getUserTrips, updateTrip } = require('../controllers/trip.controller');
 
 const {
   protect,
