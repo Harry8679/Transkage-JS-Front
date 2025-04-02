@@ -8,31 +8,42 @@ const sendMailOrder = require('../../utils/sendEmailOrder');
 jest.mock('../../utils/sendEmailOrder');
 
 describe('📦 Order Controller', () => {
-  let token;
   let trip;
-  let userId = new mongoose.Types.ObjectId();
+  const userId = new mongoose.Types.ObjectId();
 
   beforeAll(async () => {
-    // Simuler un utilisateur connecté (req.user)
     app.use((req, res, next) => {
       req.user = { _id: userId };
       next();
     });
 
-    // Créer un faux trajet
     trip = await Trip.create({
       kilos: 100,
       pricePerKilo: 10,
       priceTranskage: 15,
-      author: { _id: new mongoose.Types.ObjectId() },
+      selectedTransport: 'avion',
+      departureDate: new Date(),
+      arrivalDate: new Date(Date.now() + 86400000),
+      departureTime: '10:00',
+      arrivalTime: '14:00',
+      departureCity: 'Paris',
+      arrivalCity: 'Abidjan',
+      departureCountry: 'France',
+      arrivalCountry: "Côte d'Ivoire",
+      author: {
+        _id: new mongoose.Types.ObjectId(),
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+      },
     });
   });
 
   afterAll(async () => {
     await Order.deleteMany();
     await Trip.deleteMany();
-    mongoose.connection.close();
-  });
+    await mongoose.connection.close();
+  }, 10000);
 
   describe('✅ Création de commande', () => {
     it('devrait créer une commande avec succès', async () => {
@@ -116,7 +127,12 @@ describe('📦 Order Controller', () => {
         totalPriceTranskage: 60,
         secretCode: '999999',
         sender: { _id: userId, firstName: 'Test', lastName: 'User', email: 'test@example.com' },
-        transporter: { _id: trip.author._id, firstName: 'Trans', lastName: 'Porter', email: 'tp@example.com' },
+        transporter: {
+          _id: trip.author._id,
+          firstName: 'Trans',
+          lastName: 'Porter',
+          email: 'tp@example.com',
+        },
         trip: trip._id,
       });
     });
