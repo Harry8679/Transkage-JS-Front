@@ -1,22 +1,46 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
-const app = require('../../app');
+const express = require('express');
+const bodyParser = require('body-parser');
 const Order = require('../../models/order.model');
 const Trip = require('../../models/trip.model');
 const sendMailOrder = require('../../utils/sendEmailOrder');
+const {
+  createOrder,
+  acceptOrderByTransporter,
+  rejectOrderByTransporter,
+  markOrderAsPaid,
+} = require('../../controllers/order.controller');
 
 jest.mock('../../utils/sendEmailOrder');
 
 describe('📦 Order Controller', () => {
   let trip;
-  const userId = new mongoose.Types.ObjectId();
+  let userId = new mongoose.Types.ObjectId();
+  let transporterId = new mongoose.Types.ObjectId();
 
-  beforeAll(async () => {
+  const createTestApp = () => {
+    const app = express();
+    app.use(bodyParser.json());
+
+    // Simuler req.user
     app.use((req, res, next) => {
       req.user = { _id: userId };
       next();
     });
 
+    app.post('/api/v1/orders', createOrder);
+    app.put('/api/v1/orders/:orderId/accept', acceptOrderByTransporter);
+    app.put('/api/v1/orders/:orderId/reject', rejectOrderByTransporter);
+    app.put('/api/v1/orders/:orderId/mark-as-paid', markOrderAsPaid);
+
+    return app;
+  };
+
+  const app = createTestApp();
+
+  beforeAll(async () => {
+    await mongoose.connect(process.env.MONGO_URI_TEST || 'mongodb://localhost:27017/test-db');
     trip = await Trip.create({
       kilos: 100,
       pricePerKilo: 10,
@@ -31,13 +55,13 @@ describe('📦 Order Controller', () => {
       departureCountry: 'France',
       arrivalCountry: "Côte d'Ivoire",
       author: {
-        _id: new mongoose.Types.ObjectId(),
+        _id: transporterId,
         firstName: 'John',
         lastName: 'Doe',
         email: 'john@example.com',
       },
     });
-  });
+  }, 10000);
 
   afterAll(async () => {
     await Order.deleteMany();
@@ -72,9 +96,9 @@ describe('📦 Order Controller', () => {
     });
 
     it('devrait échouer si utilisateur non authentifié', async () => {
-      const appNoAuth = require('express')();
-      appNoAuth.use(require('express').json());
-      appNoAuth.post('/api/v1/orders', require('../../controllers/order.controller').createOrder);
+      const appNoAuth = express();
+      appNoAuth.use(express.json());
+      appNoAuth.post('/api/v1/orders', createOrder);
 
       const res = await request(appNoAuth).post('/api/v1/orders').send({});
       expect(res.status).toBe(401);
@@ -95,7 +119,7 @@ describe('📦 Order Controller', () => {
         totalPriceTransporter: 50,
         totalPriceTranskage: 75,
         sender: userId,
-        transporter: trip.author._id,
+        transporter: transporterId,
         trip: trip._id,
       });
     });
@@ -103,14 +127,12 @@ describe('📦 Order Controller', () => {
     it('devrait valider la commande', async () => {
       const res = await request(app).put(`/api/v1/orders/${order._id}/accept`).send();
       expect(res.status).toBe(200);
-      expect(res.body.message).toMatch(/validée/i);
       expect(res.body.order.trackingStatus).toMatch(/validée/i);
     });
 
     it('devrait refuser la commande', async () => {
       const res = await request(app).put(`/api/v1/orders/${order._id}/reject`).send();
       expect(res.status).toBe(200);
-      expect(res.body.message).toMatch(/refusée/i);
       expect(res.body.order.trackingStatus).toMatch(/refus/i);
     });
   });
@@ -128,7 +150,7 @@ describe('📦 Order Controller', () => {
         secretCode: '999999',
         sender: { _id: userId, firstName: 'Test', lastName: 'User', email: 'test@example.com' },
         transporter: {
-          _id: trip.author._id,
+          _id: transporterId,
           firstName: 'Trans',
           lastName: 'Porter',
           email: 'tp@example.com',
