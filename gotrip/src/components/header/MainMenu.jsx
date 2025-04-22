@@ -8,13 +8,14 @@ import {
 } from "../../data/mainMenuData";
 import CategoriesMegaMenu from "./CategoriesMegaMenu";
 import {
-  isActiveParent,
+  // isActiveParent,
   isActiveLink,
   isActiveParentChaild,
 } from "../../utils/linkActiveChecker";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const MainMenu = ({ style = "" }) => {
   const { pathname } = useLocation();
   const [isActiveParent, setIsActiveParent] = useState(false);
@@ -144,6 +145,10 @@ const MainMenu = ({ style = "" }) => {
 
         <li className={pathname === "/contact" ? "current" : ""}>
           <Link to="/contact">Contact</Link>
+        </li>
+
+        <li className={pathname === "/path" ? "current" : ""}>
+          <Link to="/path">+ Publier un trajet</Link>
         </li>
       </ul>
     </nav>
