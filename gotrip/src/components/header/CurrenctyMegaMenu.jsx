@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const CurrenctyMegaMenu = ({ textClass }) => {
   const [click, setClick] = useState(false);
   const handleCurrency = () => setClick((prevState) => !prevState);

@@ -70,7 +70,7 @@ const Header1 = () => {
                     to="/login"
                     className="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1"
                   >
-                    Become An Expert
+                    Connexion
                   </Link>
                   <Link
                     to="/signup"
