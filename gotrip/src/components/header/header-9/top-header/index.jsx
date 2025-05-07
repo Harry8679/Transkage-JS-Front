@@ -39,7 +39,7 @@ const HeaderBanner = () => {
               {/* End .col-auto */}
               <div className="col-auto md:d-none">
                 <Link to="/login" className="text-12 text-white">
-                  Become An Expert
+                  Connexion
                 </Link>
               </div>
               {/* End .col-auto */}
@@ -49,7 +49,7 @@ const HeaderBanner = () => {
               {/* End .col-auto */}
               <div className="col-auto">
                 <Link to="/login" className="text-12 text-white">
-                  Sign In / Register
+                  Inscription
                 </Link>
               </div>
               {/* End .col-auto */}
