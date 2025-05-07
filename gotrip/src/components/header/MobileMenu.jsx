@@ -244,7 +244,7 @@ const MobileMenu = () => {
             className=" button -dark-1 px-30 fw-400 text-14 bg-blue-1 h-50 text-white"
             to="/login"
           >
-            Become An Expert
+            Connexion
           </Link>
         </div>
       </div>
