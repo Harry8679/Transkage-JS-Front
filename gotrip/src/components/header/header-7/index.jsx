@@ -71,13 +71,13 @@ const Header1 = () => {
                     to="/login"
                     className="button px-30 fw-400 text-14 -blue-1 bg-dark-4 h-50 text-white"
                   >
-                    Become An Expert
+                    Connexion
                   </Link>
                   <Link
                     to="/signup"
                     className="button px-30 fw-400 text-14 -outline-blue-1 h-50 text-blue-1 ml-20"
                   >
-                    Sign In / Register
+                    Inscription
                   </Link>
                 </div>
                 {/* End btn-group */}
