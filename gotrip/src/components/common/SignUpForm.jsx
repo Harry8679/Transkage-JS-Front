@@ -64,8 +64,7 @@ const SignUpForm = () => {
             </div>
           </div>
           <div className="text-15 lh-15 text-light-1 ml-10">
-            Email me exclusive Agoda promotions. I can opt out later as stated
-            in the Privacy Policy.
+            Accepter les conditions pour valider votre inscription
           </div>
         </div>
       </div>
@@ -77,7 +76,7 @@ const SignUpForm = () => {
           href="#"
           className="button py-20 -dark-1 bg-blue-1 text-white w-100"
         >
-          Sign Up <div className="icon-arrow-top-right ml-15" />
+          Inscription <div className="icon-arrow-top-right ml-15" />
         </button>
       </div>
       {/* End .col */}
