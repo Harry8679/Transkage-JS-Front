@@ -8,7 +8,7 @@ const CallToActions = () => {
           <div className="col-auto" data-aos="fade-up" data-aos-delay="100">
             <i className="icon-newsletter text-60 sm:text-40 text-white" />
             <h2 className="text-30 sm:text-24 lh-15 text-white mt-20">
-              Your Travel Journey Starts Here
+              Votre voyage commence ici
             </h2>
             <p className="text-white mt-5">
               Sign up and we&apos;ll send the best deals to you
