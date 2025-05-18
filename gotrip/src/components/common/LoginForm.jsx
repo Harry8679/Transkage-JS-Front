@@ -4,7 +4,7 @@ const LoginForm = () => {
   return (
     <form className="row y-gap-20">
       <div className="col-12">
-        <h1 className="text-22 fw-500">Welcome back</h1>
+        <h1 className="text-22 fw-500">Bienvenue</h1>
         <p className="mt-10">
           Don&apos;t have an account yet?{" "}
           <Link to="/signup" className="text-blue-1">
