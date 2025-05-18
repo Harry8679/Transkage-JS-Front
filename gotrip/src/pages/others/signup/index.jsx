@@ -33,7 +33,7 @@ const SignUp = () => {
 
                 <div className="row y-gap-20 pt-30">
                   <div className="col-12">
-                    <div className="text-center">or sign in with</div>
+                    <div className="text-center">ou connexion avec</div>
                   </div>
                   <LoginWithSocial />
                   <div className="col-12">
