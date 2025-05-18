@@ -19,7 +19,7 @@ const Subscribe = () => {
             <div className="d-flex justify-center flex-column h-400 px-80 py-40 md:px-30 bg-green-1">
               <div className="icon-newsletter text-60 sm:text-40 text-dark-1" />
               <h2 className="text-30 sm:text-24 lh-15 mt-20">
-                Your Travel Journey Starts Here
+                Votre voyage commence ici
               </h2>
               <p className="text-dark-1 mt-5">
                 Sign up and we&apos;ll send the best deals to you
