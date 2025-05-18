@@ -6,9 +6,9 @@ const LoginForm = () => {
       <div className="col-12">
         <h1 className="text-22 fw-500">Bienvenue</h1>
         <p className="mt-10">
-          Don&apos;t have an account yet?{" "}
+          Vous n&apos;avez pas encore de compte?{" "}
           <Link to="/signup" className="text-blue-1">
-            Sign up for free
+            Inscrivez-vous
           </Link>
         </p>
       </div>
@@ -25,14 +25,14 @@ const LoginForm = () => {
       <div className="col-12">
         <div className="form-input ">
           <input type="password" required />
-          <label className="lh-1 text-14 text-light-1">Password</label>
+          <label className="lh-1 text-14 text-light-1">Mot de passe</label>
         </div>
       </div>
       {/* End .col */}
 
       <div className="col-12">
         <a href="#" className="text-14 fw-500 text-blue-1 underline">
-          Forgot your password?
+          Mot de passe oublié ?
         </a>
       </div>
       {/* End .col */}
@@ -43,7 +43,7 @@ const LoginForm = () => {
           href="#"
           className="button py-20 -dark-1 bg-blue-1 text-white w-100"
         >
-          Sign In <div className="icon-arrow-top-right ml-15" />
+          Connexion <div className="icon-arrow-top-right ml-15" />
         </button>
       </div>
       {/* End .col */}
