@@ -6,7 +6,7 @@ const Subscribe = () => {
           <div className="icon-newsletter text-60 sm:text-40 text-white" />
           <div className="ml-30">
             <h4 className="text-26 text-white fw-600">
-              Your Travel Journey Starts Here
+              Votre voyage commence ici
             </h4>
             <div className="text-white">
               Sign up and we&apos;ll send the best deals to you
