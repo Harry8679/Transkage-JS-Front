@@ -22,7 +22,7 @@ const Subscribe = () => {
                 Votre voyage commence ici
               </h2>
               <p className="text-dark-1 mt-5">
-                Sign up and we&apos;ll send the best deals to you
+                Inscrivez-vous et nous vous enverrons les meilleures offres
               </p>
 
               <div className="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
