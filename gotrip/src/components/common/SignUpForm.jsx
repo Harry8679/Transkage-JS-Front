@@ -18,7 +18,7 @@ const SignUpForm = () => {
       <div className="col-12">
         <div className="form-input ">
           <input type="text" required />
-          <label className="lh-1 text-14 text-light-1">First Name</label>
+          <label className="lh-1 text-14 text-light-1">Nom</label>
         </div>
       </div>
       {/* End .col */}
@@ -26,7 +26,7 @@ const SignUpForm = () => {
       <div className="col-12">
         <div className="form-input ">
           <input type="text" required />
-          <label className="lh-1 text-14 text-light-1">Last Name</label>
+          <label className="lh-1 text-14 text-light-1">Prénom</label>
         </div>
       </div>
       {/* End .col */}
@@ -42,7 +42,7 @@ const SignUpForm = () => {
       <div className="col-12">
         <div className="form-input ">
           <input type="password" required />
-          <label className="lh-1 text-14 text-light-1">Password</label>
+          <label className="lh-1 text-14 text-light-1">Mot de passe</label>
         </div>
       </div>
       {/* End .col */}
@@ -50,7 +50,7 @@ const SignUpForm = () => {
       <div className="col-12">
         <div className="form-input ">
           <input type="password" required />
-          <label className="lh-1 text-14 text-light-1">Confirm Password</label>
+          <label className="lh-1 text-14 text-light-1">Confirmation du mot de passe</label>
         </div>
       </div>
       {/* End .col */}
