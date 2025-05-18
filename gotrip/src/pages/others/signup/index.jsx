@@ -39,7 +39,7 @@ const SignUp = () => {
                   <LoginWithSocial />
                   <div className="col-12">
                     <div className="text-center px-30">
-                    En créant un compte, vous acceptez nos conditions d'utilisation et notre déclaration de confidentialité.
+                      En créant un compte, vous acceptez nos conditions d'utilisation et notre déclaration de confidentialité.
                     </div>
                   </div>
                 </div>

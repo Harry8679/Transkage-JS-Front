@@ -38,8 +38,7 @@ const LogIn = () => {
                   <LoginWithSocial />
                   <div className="col-12">
                     <div className="text-center px-30">
-                      By creating an account, you agree to our Terms of Service
-                      and Privacy Statement.
+                      En créant un compte, vous acceptez nos conditions d'utilisation et notre déclaration de confidentialité.
                     </div>
                   </div>
                 </div>
