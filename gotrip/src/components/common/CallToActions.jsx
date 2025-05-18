@@ -13,7 +13,7 @@ const CallToActions = () => {
                   Votre voyage commence ici
                 </h4>
                 <div className="text-white">
-                  Sign up and we`&apos;ll send the best deals to you
+                  Inscrivez-vous et nous vous enverrons les meilleures offres
                 </div>
               </div>
             </div>
