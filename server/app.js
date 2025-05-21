@@ -28,7 +28,7 @@ app.get("/", (req, res) => res.send("API Running"));
 
 // Chargement du middleware CORS avant les routes
 app.use(cors({
-  origin: 'http://localhost:3010', // L'URL de votre frontend
+  origin: 'http://localhost:5173', // L'URL de votre frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Autoriser ces méthodes HTTP
   credentials: true, // Si vous utilisez des cookies ou d'autres méthodes d'authentification
 }));
